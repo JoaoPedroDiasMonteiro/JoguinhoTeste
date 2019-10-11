@@ -24,6 +24,8 @@ function preload() {
 	);
 }
 
-function create() {}
+function create() {
+	this.add.image(400, 300, 'sky');
+}
 
 function update() {}
