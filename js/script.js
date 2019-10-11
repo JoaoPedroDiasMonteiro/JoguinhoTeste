@@ -11,7 +11,18 @@ var config = {
 
 var game = new Phaser.Game(config);
 
-function preload() {}
+function preload() {
+	this.load.image('sky', 'img/sky.png');
+	this.load.image('ground', 'img/platform.png');
+	this.load.image('star', 'img/star.png');
+	this.load.image('bomb', 'img/bomb.png');
+	this.load.spritesheet('dude',
+		'img/dude.png', {
+			frameWidth: 32,
+			frameHeight: 48
+		}
+	);
+}
 
 function create() {}
 
