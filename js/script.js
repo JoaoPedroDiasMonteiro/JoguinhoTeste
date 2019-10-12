@@ -20,6 +20,8 @@ var config = {
 
 var player
 var platforms;
+var score = 0;
+var scoreText;
 var game = new Phaser.Game(config);
 
 function preload() {
@@ -103,6 +105,9 @@ function create() {
 		child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
 
 	});
+	// pontuação
+	scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+
 	// interações de objetos
 	this.physics.add.collider(player, platforms);
 	this.physics.add.collider(stars, platforms);
@@ -126,7 +131,9 @@ function update() {
 		player.setVelocityY(-330);
 	}
 }
-// deletar a estrela ao interagir com o player
+// deletar a estrela ao interagir com o player & adicionar ponutação
 function collectStar(player, star) {
 	star.disableBody(true, true);
+    score += 10;
+    scoreText.setText('Score: ' + score);
 }
