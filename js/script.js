@@ -50,6 +50,10 @@ function create() {
 
 	// player
 	player = this.physics.add.sprite(100, 450, 'dude');
+	// adicionar um pequeno pulo ao cair
+	player.setBounce(0.2);
+	// impedir que o player saia da área visível
+	player.setCollideWorldBounds(true);
 
 }
 
