@@ -58,6 +58,22 @@ function create() {
 	// faz com que o player colida com as plataformas
 	this.physics.add.collider(player, platforms);
 
+	// cria teclas para movimentação do player
+	cursors = this.input.keyboard.createCursorKeys();
+
 }
 
-function update() {}
+function update() {
+
+	// faz o player mover
+	if (cursors.left.isDown) {
+		player.setVelocityX(-160);
+	} else if (cursors.right.isDown) {
+		player.setVelocityX(160);
+	} else {
+		player.setVelocityX(0);
+	}
+	if (cursors.up.isDown && player.body.touching.down) {
+		player.setVelocityY(-330);
+	}
+}
