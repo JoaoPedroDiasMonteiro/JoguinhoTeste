@@ -55,6 +55,9 @@ function create() {
 	// impedir que o player saia da área visível
 	player.setCollideWorldBounds(true);
 
+	// faz com que o player colida com as plataformas
+	this.physics.add.collider(player, platforms);
+
 }
 
 function update() {}
