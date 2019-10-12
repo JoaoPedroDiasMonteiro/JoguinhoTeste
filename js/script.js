@@ -54,9 +54,6 @@ function create() {
 	player.setBounce(0.2);
 	// impedir que o player saia da área visível
 	player.setCollideWorldBounds(true);
-
-	// faz com que o player colida com as plataformas
-	this.physics.add.collider(player, platforms);
 	// animações do personagem
 	// movendo para a esquerda
 	this.anims.create({
@@ -87,10 +84,29 @@ function create() {
 		frameRate: 10,
 		repeat: -1
 	});
-
 	// cria teclas para movimentação do player
 	cursors = this.input.keyboard.createCursorKeys();
 
+	// estrelas
+	stars = this.physics.add.group({
+		key: 'star',
+		repeat: 11,
+		setXY: {
+			x: 12,
+			y: 0,
+			stepX: 70
+		}
+	});
+
+	stars.children.iterate(function (child) {
+
+		child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+
+	});
+	// interações de objetos
+	this.physics.add.collider(player, platforms);
+	this.physics.add.collider(stars, platforms);
+	this.physics.add.overlap(player, stars, collectStar, null, this);
 }
 
 function update() {
@@ -109,4 +125,8 @@ function update() {
 	if (cursors.up.isDown && player.body.touching.down) {
 		player.setVelocityY(-330);
 	}
+}
+// deletar a estrela ao interagir com o player
+function collectStar(player, star) {
+	star.disableBody(true, true);
 }
