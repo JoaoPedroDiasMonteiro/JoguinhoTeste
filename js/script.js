@@ -18,6 +18,7 @@ var config = {
 	}
 };
 
+var player
 var platforms;
 var game = new Phaser.Game(config);
 
@@ -46,6 +47,10 @@ function create() {
 	platforms.create(600, 400, 'ground');
 	platforms.create(50, 250, 'ground');
 	platforms.create(750, 220, 'ground');
+
+	// player
+	player = this.physics.add.sprite(100, 450, 'dude');
+
 }
 
 function update() {}
